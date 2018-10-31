@@ -1,0 +1,35 @@
+title: 陈八斗的博客
+description: >
+  陈八斗的博客
+permalink: ':title/'
+baseurl: ""
+url: ""
+site-twitter: 
+
+# 作者
+author: 陈八斗 # 添加你的名字
+author-img: avatar.jpg # 添加你的照片
+about-author:  天行健，君子以自强不息<br>地势坤，君子以厚德载物 # 添加描述
+# social-twitter: # 添加你的Twitter
+# social-facebook: # 添加你的Facebook
+social-github: ChenBaDou # 添加你的GitHub
+# social-linkedin: # 添加你的Linkedin
+social-email: chenbadou@126.com # 添加你的email
+
+# Disqus
+# discus-identifier: chenbadou 
+
+# Tracker
+analytics: # Google Analytics
+
+# Build Settings
+markdown: kramdown
+plugins:
+  - jekyll-sitemap
+  - jekyll-paginate
+  - jemoji
+
+paginate: 8
+paginate_path: "/page/:num"
+
+exclude: ["node_modules", "gulpfile.js", "package.json", "yarn.lock"]
