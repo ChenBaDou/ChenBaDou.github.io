@@ -24,7 +24,7 @@
     <meta content="/about/" property="article:author">
   
   
-    <meta content="/assets/img/GitHubPages.jpg" property="og:image">
+    <meta content="/assets/img/import/GitHubPages.jpg" property="og:image">
   
   
     
@@ -50,7 +50,7 @@
     <meta name="twitter:description" content="GitHub Pages + jekyll + gulp 搭建个人博客网站">
   
   
-    <meta name="twitter:image:src" content="/assets/img/GitHubPages.jpg">
+    <meta name="twitter:image:src" content="/assets/img/import/GitHubPages.jpg">
   
 
 	<meta name="description" content="GitHub Pages + jekyll + gulp 搭建个人博客网站">
@@ -120,7 +120,7 @@
     
     <div class="page-cover-image">
       <figure>
-        <img class="page-image" src=/assets/img/GitHubPages.jpg alt="GitHub Pages + jekyll + gulp 搭建个人博客网站">
+        <img class="page-image" src=/assets/img/import/GitHubPages.jpg alt="GitHub Pages + jekyll + gulp 搭建个人博客网站">
         
       </figure>
     </div> <!-- End Page Cover Image -->
@@ -141,9 +141,9 @@
 
 <h2 id="如何搭建">如何搭建？</h2>
 
-<p>我得说声抱歉，因为这篇文章的起点是你需要懂一些前端知识例如git与html，如果你是小白的话，这篇文章可能对你并不太友好，但是，如果你有耐心，愿意按照我的步骤一步步来的话，我相信这问题不大。我尽量写的通俗易懂，争取把每一步都写出来。</p>
+<p>我得说声抱歉，因为这篇文章的起点是你需要懂一些前端知识例如git与html，如果你是小白的话，这篇文章可能对你并不太友好，但是，如果你有耐心，愿意按照我的步骤一步步来的话，我相信这问题不大。我尽量写的通俗易懂，细化每一步流程。</p>
 
-<p><strong>我把整个过程分为三步</strong></p>
+<p><strong>整个过程其实是三件事</strong></p>
 
 <ol>
   <li>
@@ -153,9 +153,11 @@
     <p>然后是本地搭建jekyll环境</p>
   </li>
   <li>
-    <p>最后是美化和工程化管理我们的项目（附加项）</p>
+    <p>最后是美化和工程化管理我们的项目</p>
   </li>
 </ol>
+
+<p>在这里，我会把这三步分开做，最后再组合，这样做我觉得会有助于我们学习理解。</p>
 
 <h3 id="一玩转github-pages">一、玩转GitHub Pages</h3>
 
@@ -165,7 +167,179 @@
 
 <p><a href="https://github.com/join?return_to=%2Fjoin&amp;source=login" target="_blank">GitHub注册地址</a></p>
 
+<p><img src="/assets/img/import/注册GitHub.png" alt="注册GitHub" title="注册GitHub" /></p>
+
 <p>强调一点，名字很重要，与你之后博客的地址息息相关，如果你不设置自己的域名， <code class="highlighter-rouge">username</code> + .github.io就是你的博客地址。</p>
+
+<h4 id="2创建仓库">2.创建仓库</h4>
+
+<p>两个入口都可以进入创建仓库的页面</p>
+
+<p><img src="/assets/img/import/开始项目.png" alt="开始项目" title="开始项目" /></p>
+
+<p>仓库名字的话我建议你按照这个格式username.github.io，当然，这不是必要的，如果你取了其他的仓库名字，那么，访问地址就会变为https://username.github.io/仓库名字/</p>
+
+<p><img src="/assets/img/import/创建仓库.png" alt="创建仓库" title="创建仓库" /></p>
+
+<p>获取git地址</p>
+
+<p><img src="/assets/img/import/获取git地址.png" alt="获取git地址" title="获取git地址" /></p>
+
+<h4 id="3添加文件">3.添加文件</h4>
+
+<p>创建好仓库之后，我们就能在本地做修改了，接下来的操作我习惯用命令行实现，你也可以用其他工具。（小白的话可以尝试GitHub的官方工具<a href="https://desktop.github.com/" target="_blank">GitHub Desktop</a>图形化操作，很方便，网上的教程很多，在此我就不赘述了。如果你是连git是什么都不知道的白又白，那也没关系，知识咱们是可以慢慢学的嘛，推荐你阅读<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank">Git教程 - 廖雪峰的官方网站</a>）</p>
+
+<ul>
+  <li>切换到你想存放的目录</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">~</span> <span class="err">$</span> <span class="n">cd</span> <span class="no">Documents</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">demo</span><span class="o">/</span></code></pre></figure>
+
+<ul>
+  <li>克隆你的仓库</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">~</span> <span class="err">$</span> <span class="n">git</span> <span class="nb">clone</span> <span class="n">https</span><span class="ss">:/</span><span class="o">/</span><span class="n">github</span><span class="p">.</span><span class="nf">com</span><span class="o">/</span><span class="n">username</span><span class="o">/</span><span class="n">username</span><span class="p">.</span><span class="nf">github</span><span class="p">.</span><span class="nf">io</span></code></pre></figure>
+
+<ul>
+  <li>进入克隆出的目录并添加一个index.html文件</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">~</span> <span class="err">$</span> <span class="n">cd</span> <span class="n">chen</span><span class="o">-</span><span class="n">ba</span><span class="o">-</span><span class="n">dou</span><span class="p">.</span><span class="nf">github</span><span class="p">.</span><span class="nf">io</span>
+<span class="o">~</span> <span class="err">$</span> <span class="n">echo</span> <span class="s2">"Hello World"</span> <span class="o">&gt;</span> <span class="n">index</span><span class="p">.</span><span class="nf">html</span></code></pre></figure>
+
+<ul>
+  <li>添加、提交和推送你的更改</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">~</span> <span class="err">$</span> <span class="n">git</span> <span class="n">add</span> <span class="o">--</span><span class="n">all</span>
+<span class="o">~</span> <span class="err">$</span> <span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">"first commit"</span>
+<span class="o">~</span> <span class="err">$</span> <span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">u</span> <span class="n">origin</span> <span class="n">master</span></code></pre></figure>
+
+<p>附上操作记录</p>
+
+<p><img src="/assets/img/import/操作记录.png" alt="操作记录" title="操作记录" /></p>
+
+<p>好了，这会儿你已经可以看到你新添加的页面了，地址是username.github.io。</p>
+
+<p><img src="/assets/img/import/GitHubPages部署成功.jpg" alt="GitHubPages部署成功" title="GitHubPages部署成功" /></p>
+
+<p>至此，我们已经完成了第一部分的工作，其实你已经可以提前享受成功的喜悦了，因为通向读者的路已经修通，接下来只是页面编写方式与是否美观的问题了。</p>
+
+<h3 id="二搭建jekyll环境">二、搭建jekyll环境</h3>
+
+<p>首先，我们需要知道，我们为什么要用jekyll以及它能帮我们做什么？</p>
+
+<p>上面我们创建了一个托管我们代码的仓库，但是我们最终的目的是专注的写blog，仅仅有一个发布环境这还不够，我们还需要一个博客的模板并启动一个可以让我们边写边看的本地服务，我们来让jekyll帮我们做这个工作。</p>
+
+<h4 id="1安装jekyll">1.安装jekyll</h4>
+
+<p><strong>确保你在系统里有下面这些配置</strong></p>
+
+<ul>
+  <li>Ruby</li>
+  <li>RubyGems</li>
+  <li>Linux, Unix, or Mac OS X</li>
+</ul>
+
+<blockquote>
+  <h3 id="在-windows-下使用-jekyll">在 Windows 下使用 jekyll</h3>
+  <p>你可以使用 jekyll running on Windows, 但是官方文档并不建议你在 Windows 平台上安装 jekyll。</p>
+</blockquote>
+
+<p>如果你有以上配置，那jekyll的安装就非常简单了，你只需使用RubyGems在命令行输入以下命令就完成了jekyll的安装</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">~</span> <span class="err">$</span> <span class="n">gem</span> <span class="n">install</span> <span class="n">jekyll</span></code></pre></figure>
+
+<h4 id="2创建最简单的jekyll模板">2.创建最简单的jekyll模板</h4>
+
+<p>我们假定项目名字为jekyll_demo，你也可以取你想取的名字</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">~</span> <span class="err">$</span> <span class="n">jekyll</span> <span class="n">new</span> <span class="n">jekyll_demo</span>
+<span class="o">~</span> <span class="err">$</span> <span class="n">cd</span> <span class="n">jekyll_demo</span>
+<span class="o">~</span> <span class="err">$</span> <span class="n">jekyll</span> <span class="n">serve</span></code></pre></figure>
+
+<p>ok，现在你就可以去<a href="http://localhost:4000" target="_blank">http://localhost:4000</a>上查看效果了。</p>
+
+<p><img src="/assets/img/import/jekyll简单首页.png" alt="jekyll简单首页" title="jekyll简单首页" />
+<img src="/assets/img/import/jekyll简单正文.png" alt="jekyll简单正文" title="jekyll简单正文" /></p>
+
+<p>怎么样，是不是很简单？</p>
+
+<h4 id="3修改jekyll配置">3.修改jekyll配置</h4>
+
+<p>上面创建了一个最简单的jekyll实例，但是这并不是我们想要的，我们想要一个携带有个人信息的博客网站。这时候我们需要了解一下jekyll的结构以及配置文件了。</p>
+
+<p>一个基本的 Jekyll 网站的目录结构一般是像这样的：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">.</span>
+<span class="err">├──</span> <span class="n">_config</span><span class="p">.</span><span class="nf">yml</span>
+<span class="err">├──</span> <span class="n">_posts</span>
+<span class="o">|</span>   <span class="err">└──</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">31</span><span class="o">-</span><span class="n">welcome</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">jekyll</span><span class="p">.</span><span class="nf">markdown</span>
+<span class="err">├──</span> <span class="n">_site</span>
+<span class="err">└──</span> <span class="n">index</span><span class="p">.</span><span class="nf">html</span></code></pre></figure>
+
+<p>我们需要修改_config.yml文件，这里是jekyll的基本配置，以下是我修改的示意图，供大家参考。</p>
+
+<p><img src="/assets/img/import/jekyll基本配置修改_首页.png" alt="jekyll基本配置修改_首页" title="jekyll基本配置修改_首页" /></p>
+
+<p>_posts文件夹下面是你的文章，文件格式很重要，必须要符合：YEAR-MONTH-DAY-title.markdown。文章需要用markdown语法书写，如果你不熟悉，不用担心，这很简单，你只需记住常用写法就ok了，剩下的可以等用到的时候再查markdown的文档。</p>
+
+<p><img src="/assets/img/import/jekyll基本配置修改_正文.png" alt="jekyll基本配置修改_正文" title="jekyll基本配置修改_正文" /></p>
+
+<p>这样，一个最简单的博客就完成了。</p>
+
+<p><img src="/assets/img/import/jekyll搭建成功_首页.png" alt="jekyll搭建成功_首页" title="jekyll搭建成功_首页" />
+<img src="/assets/img/import/jekyll搭建成功_正文.png" alt="jekyll搭建成功_正文" title="jekyll搭建成功_正文" /></p>
+
+<p>jekyll详细文档请见jekyll官网<a href="https://www.jekyll.com.cn" target="_blank">Jekyll • 简单的博客、静态网站工具</a></p>
+
+<h3 id="三美化博客模板和工程化项目">三、美化博客模板和工程化项目</h3>
+
+<h4 id="1美化博客模板">1.美化博客模板</h4>
+
+<p>现在，我们已经把博客发布地址和本地博客的配置搞定了，现在只需把这两步组合到一起，然后推送到远端，你就完成了一个最基本的博客了。</p>
+
+<p>但是，这可能还没有满足我们的需求，我们一定希望我们的博客页面美观优雅，这样会使我们的读者赏心悦目。美化的话，你可以直接选择别人写好的博客模板，这样省时省力，如果你想自己设计你的博客网站，你也可以自己写样式，因人而异。我提供我的博客模板引入方法，如果你觉得我的模板不符合你的心意，你可以在<a href="http://jekyllthemes.org" target="_blank">jekyll主题</a>选择其他主题。</p>
+
+<p>引入方法很简单，你只需在我的仓库<a href="https://github.com/ChenBaDou/ChenBaDou.github.io" target="_blank">https://github.com/ChenBaDou/ChenBaDou.github.io</a>点击右上角fork按钮</p>
+
+<p><img src="/assets/img/import/fork项目.png" alt="fork项目" title="fork项目" /></p>
+
+<p>接下来在导航条最右侧settings里修改项目名称 <code class="highlighter-rouge">username</code> + .github.io。</p>
+
+<p><img src="/assets/img/import/修改项目名称.png" alt="修改项目名称" title="修改项目名称" /></p>
+
+<p>好了，现在你已经可以访问 <code class="highlighter-rouge">username</code> + .github.io了。当然，现在博客的信息和内容还都是我的，接下来你需要重复第一步，把这个库clone到本地，再重复第二步，修改项目的_config.yml文件和_posts文件下面的博客文章，写好博文之后你只需要推送到远端就可以看到自己发表的博文了。</p>
+
+<h4 id="2工程化项目">2.工程化项目</h4>
+
+<p>我的项目使用gulp作为自动化工具，你也可以选择其他的自动化工具，比如grunt，看个人喜好。</p>
+
+<p>在你上一步fork我的项目时，gulp的配置都已经clone过去了，这里你可以不做改动，直接用我写好的配置，gulp会帮你做sass转换、压缩css与图片、浏览器同步等工作。因为本文主体是搭建博客，工程化我就不多说了，有关gulp的详细配置，我准备之后写一篇博客单独介绍。</p>
+
+<p>因为我们已经配置好了gulp的配置文件，我们这里直接用gulp启动项目。</p>
+
+<ul>
+  <li>切换到你的项目目录</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">~</span> <span class="err">$</span> <span class="n">cd</span> <span class="n">username</span><span class="p">.</span><span class="nf">github</span><span class="p">.</span><span class="nf">io</span></code></pre></figure>
+
+<ul>
+  <li>安装必要的包</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">~</span> <span class="err">$</span> <span class="n">npm</span> <span class="n">install</span></code></pre></figure>
+
+<ul>
+  <li>启动项目</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">~</span> <span class="err">$</span> <span class="n">gulp</span> <span class="n">server</span></code></pre></figure>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>以上，我们就成功搭建了一个免费的博客网站，尽情享受写博客的乐趣吧。
+</code></pre></div></div>
 
 
       <div class="page-footer">
