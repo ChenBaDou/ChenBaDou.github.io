@@ -1,0 +1,120 @@
+---
+layout: post
+title: "前端面试题-js相关"
+date: 2020-07-03 10:30:08 +0800
+description: 前端面试题-js相关
+tags: [面试,前端,JavaScript]
+img: import/JavaScript.jpg
+---
+
+### 一、JS 异步解决方案的发展历程以及优缺点。
+1. 回调函数（callback）
+```js
+setTimeout(() => {
+    // callback 函数体
+}, 1000)
+```
+缺点：回调地狱，不能用 try catch 捕获错误，不能 return` 回调地狱的根本问题在于
+缺乏顺序性： 回调地狱导致的调试困难，和大脑的思维方式不符 嵌套函数存在耦合性，一旦有所改动，就会牵一发而动全身，即（控制反转,嵌套函数过多的多话，很难处理错误
+```js
+ ajax('XXX1', () => {
+    // callback 函数体
+    ajax('XXX2', () => {
+        // callback 函数体
+        ajax('XXX3', () => {
+            // callback 函数体
+        })
+    })
+})
+```
+优点：解决了同步的问题（只要有一个任务耗时很长，后面的任务都必须排队等着，会拖延整个程序的执行。）
+2. Promise Promise就是为了解决callback的问题而产生的。
+Promise 实现了链式调用，也就是说每次 then 后返回的都是一个全新 Promise，如果我们在 then 中 return ，return 的结果会被Promise.resolve() 包装
+优点：解决了回调地狱的问题
+```js
+ajax('XXX1').then(res => {
+    // 操作逻辑
+    return ajax('XXX2')
+}).then(res => {
+    // 操作逻辑
+    return ajax('XXX3')
+}).then(res => {
+    // 操作逻辑
+})
+```
+缺点：无法取消 Promise ，错误需要通过回调函数来捕获
+3. Generator 特点：可以控制函数的执行，可以配合 co 函数库使用
+```js
+function* fetch() {
+    yield ajax('XXX1', () => { })
+    yield ajax('XXX2', () => { })
+    yield ajax('XXX3', () => { })
+}
+let it = fetch()
+let result1 = it.next()
+let result2 = it.next()
+let result3 = it.next()
+```
+4. Async / await async、await 是异步的终极解决方案
+优点是：代码清晰，不用像 Promise 写一大堆 then 链，处理了回调地狱的问题
+缺点：await 将异步代码改造成同步代码，如果多个异步操作没有依赖性而使用 await 会导致性能上的降低。
+```js
+async function test() {
+    // 以下代码没有依赖性的话，完全可以使用 Promise.all 的方式
+    // 如果有依赖性的话，其实就是解决回调地狱的例子了
+    await fetch('XXX1')
+    await fetch('XXX2')
+    await fetch('XXX3')
+}
+```
+
+### 二、为什么普通 for 循环的性能远远高于 forEach 的性能，请解释其中的原因
+for 循环没有任何额外的函数调用栈和上下文；
+forEach函数签名实际上是
+```js
+array.forEach(function(currentValue, index, arr), thisValue)
+```
+它不是普通的 for 循环的语法糖，还有诸多参数和上下文需要在执行的时候考虑进来，这里可能拖慢性能
+
+### 三、函数柯里化
+在一个函数中，首先填充几个参数，然后再返回一个新的函数的技术，称为函数的柯里化。通常可用于在不侵入函数的前提下，为函数 预置通用参数，供多次重复调用。
+```js
+const add = function add(x) {
+	return function (y) {
+		return x + y
+	}
+}
+const add1 = add(1)
+add1(2) === 3
+add1(20) === 21
+```
+
+### 四、从输入 url 到展示的过程
+1. DNS 解析
+2. TCP 三次握手
+3. 发送请求，分析 url，设置请求报文(头，主体)
+4. 服务器返回请求的文件 (html)
+5. 浏览器渲染
+    * HTML parser --> DOM Tree
+    * 标记化算法，进行元素状态的标记
+    * dom 树构建
+    * CSS parser --> Style Tree
+    * 解析 css 代码，生成样式树
+    * attachment --> Render Tree
+    * 结合 dom树 与 style树，生成渲染树
+    * layout: 布局
+    * GPU painting: 像素绘制页面
+    
+### 五、浏览器缓存策略
+**可分为 强缓存 和 协商缓存**
+Cache-Control/Expires: 浏览器判断缓存是否过期，未过期时，直接使用强缓存，Cache-Control的 max-age 优先级高于 Expires
+当缓存已经过期时，使用协商缓存
+> 唯一标识方案: Etag(response 携带) & If-None-Match(request携带，上一次返回的 Etag): 服务器判断资源是否被修改，
+> 最后一次修改时间: Last-Modified(response) & If-Modified-Since (request，上一次返回的Last-Modified)
+> 如果一致，则直接返回 304 通知浏览器使用缓存
+> 如不一致，则服务端返回新的资源
+
+Last-Modified 缺点：
+> 周期性修改，但内容未变时，会导致缓存失效
+> 最小粒度只到 s， s 以内的改动无法检测到
+> Etag 的优先级高于 Last-Modified
