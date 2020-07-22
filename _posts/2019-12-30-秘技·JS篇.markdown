@@ -3,7 +3,7 @@ layout: post
 title: "秘技·JS篇"
 date: 2019-12-30 15:30:08 +0800
 description: 秘技·JS篇
-tags: [技术,前端]
+tags: [前端,JavaScript,玄学]
 img: import/JavaScript.jpg
 ---
 
